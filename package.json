@@ -22,7 +22,11 @@
   "homepage": "https://github.com/mateus-maximo/spider#readme",
   "devDependencies": {
     "@types/node": "^26.2.0",
+    "@types/superagent": "^8.1.11",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "superagent": "^10.3.0"
   }
 }
