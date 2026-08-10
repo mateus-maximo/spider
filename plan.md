@@ -76,11 +76,11 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 2. Learn the Chapter 3 prerequisites
 
-- [ ] Trace one error-first callback by hand: caller, asynchronous operation, callback invocation, and return to the event loop.
-- [ ] Define an explicit TypeScript type for an error-first callback.
-- [ ] Reproduce a function that sometimes calls back synchronously and sometimes asynchronously.
-- [ ] Fix the synchronous path with `process.nextTick()` and manually observe that both paths become asynchronous.
-- [ ] Explain why `return callback(error)` prevents fall-through but does not return the asynchronous result to the original caller.
+- [x] Trace one error-first callback by hand: caller, asynchronous operation, callback invocation, and return to the event loop.
+- [x] Define an explicit TypeScript type for an error-first callback.
+- [x] Reproduce a function that sometimes calls back synchronously and sometimes asynchronously.
+- [x] Fix the synchronous path with `process.nextTick()` and manually observe that both paths become asynchronous.
+- [x] Explain why `return callback(error)` prevents fall-through but does not return the asynchronous result to the original caller.
 
 **Checkpoint:** explain error-first callbacks, callback discipline, and why empty or base paths use `process.nextTick()`.
 
