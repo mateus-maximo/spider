@@ -1,0 +1,28 @@
+{
+  "name": "spider",
+  "version": "1.0.0",
+  "description": "A learning project for practicing asynchronous programming patterns in Node.js while learning TypeScript.",
+  "scripts": {
+    "build": "tsc",
+    "manual-site": "tsx manual-site/server.ts",
+    "test": "node --import tsx --test",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateus-maximo/spider.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/mateus-maximo/spider/issues"
+  },
+  "homepage": "https://github.com/mateus-maximo/spider#readme",
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
