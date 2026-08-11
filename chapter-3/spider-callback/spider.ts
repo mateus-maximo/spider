@@ -2,33 +2,11 @@ import path from 'node:path';
 import fs from 'node:fs';
 import superagent from 'superagent';
 
-type ResultCallback = (err: Error | null, filename: string, downloaded: boolean) => void;
+export type SpiderResultCallback = (err: Error | null, filename: string, downloaded: boolean) => void;
+type SaveFileResultCallback = (err: Error | null) => void;
+type DownloadResultCallback = (err: Error | null, content?: string) => void;
 
-function main() {
-  try {
-    const url = new URL(process.argv[2] ?? 'http://localhost:8080')
-    spider(url, resultCallback)
-  } catch (e) {
-    console.error('Invalid URL');
-    process.exitCode = 1;
-  }
-}
-
-function resultCallback(err: Error | null, filename: string, downloaded: boolean) {
-  if (err) {
-    console.error(err)
-    process.exitCode = 1
-    return
-  }
-
-  if (downloaded) {
-    console.log(`Downloaded ${filename}`)
-  } else {
-    console.log(`${filename} was already downloaded`)
-  }
-}
-
-function spider(url: URL, callback: ResultCallback) {
+export function spider(url: URL, callback: SpiderResultCallback) {
   const filename = urlToFilename(url)
 
   fs.access(filename, (err) => {
@@ -38,7 +16,13 @@ function spider(url: URL, callback: ResultCallback) {
     }
 
     if (err.code === 'ENOENT') {
-      download(url, filename, callback);
+      download(url, filename, (err) => {
+        if (err) {
+          callback(err, filename, false)
+          return
+        }
+        callback(null, filename, true)
+      })
       return
     }
 
@@ -60,34 +44,42 @@ function urlToFilename(url: URL): string {
   return path.join('downloads', siteDirectory, filename);
 }
 
-function download(url: URL, filename: string, callback: ResultCallback) {
+function download(url: URL, filename: string, callback: DownloadResultCallback) {
   console.log(`Downloading ${url} to ${filename}`)
   superagent.get(url.href).accept('html').end((error, response) => {
     if (error) {
-      callback(error, filename, false)
+      callback(error)
       return
     }
 
-    fs.mkdir(path.dirname(filename), { recursive: true }, (err) => {
+    if (response.type != 'text/html') {
+      callback(new Error(`Expected text/html but got ${response.type}`))
+      return
+    }
+
+    saveFile(filename, response.text, (err) => {
       if (err) {
-        callback(err, filename, false)
+        callback(err)
         return
       }
-
-      if (response.type != 'text/html') {
-        callback(new Error(`Expected text/html but got ${response.type}`), filename, false)
-        return
-      }
-
-      fs.writeFile(filename, response.text, (err) => {
-        if (err) {
-          callback(err, filename, false)
-          return
-        }
-        callback(null, filename, true)
-      })
+      callback(null, response.text)
     })
   })
 }
 
-main();
+function saveFile(filename: string, content: string, callback: SaveFileResultCallback) {
+  fs.mkdir(path.dirname(filename), { recursive: true }, (err) => {
+    if (err) {
+      callback(err)
+      return
+    }
+
+    fs.writeFile(filename, content, (err) => {
+      if (err) {
+        callback(err)
+        return
+      }
+      callback(null)
+    })
+  })
+}

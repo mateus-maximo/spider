@@ -86,23 +86,23 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 3. Callback spider, version 1: nested callbacks
 
-- [ ] Implement URL-to-filename mapping.
-- [ ] Check whether the destination file exists.
-- [ ] Download the page, create its directory, and write the file using nested error-first callbacks.
-- [ ] Return `(error, filename, downloaded)` through a typed final callback.
-- [ ] Type filesystem errors, the HTTP response boundary, and CLI arguments without using `any`.
-- [ ] Add a CLI accepting a URL and reporting downloaded versus already available.
-- [ ] Manually run a new download, a cached download, and a failing URL.
-- [ ] Trace the four nested callback levels before refactoring them.
+- [x] Implement URL-to-filename mapping.
+- [x] Check whether the destination file exists.
+- [x] Download the page, create its directory, and write the file using nested error-first callbacks.
+- [x] Return `(error, filename, downloaded)` through a typed final callback.
+- [x] Type filesystem errors, the HTTP response boundary, and CLI arguments without using `any`.
+- [x] Add a CLI accepting a URL and reporting downloaded versus already available.
+- [x] Manually run a new download, a cached download, and a failing URL.
+- [x] Trace the four nested callback levels before refactoring them.
 
 ### 4. Callback spider, version 1 refactor: callback discipline
 
-- [ ] Copy the completed nested version into `callbacks/v1-refactored-callbacks/`.
-- [ ] Extract `saveFile()` and `download()` without changing behavior.
-- [ ] Give each extracted function one explicit callback type.
-- [ ] Replace nested `else` branches with early returns and immediate error propagation.
-- [ ] Run the same manual scenarios against both callback v1 implementations.
-- [ ] Record which nesting and duplicated error handling disappeared.
+- [x] Copy the completed nested version into `callbacks/v1-refactored-callbacks/`.
+- [x] Extract `saveFile()` and `download()` without changing behavior.
+- [x] Give each extracted function one explicit callback type.
+- [x] Replace nested `else` branches with early returns and immediate error propagation.
+- [x] Run the same manual scenarios against both callback v1 implementations.
+- [x] Record which nesting and duplicated error handling disappeared.
 
 ### 5. Callback spider, version 2: sequential recursion
 
