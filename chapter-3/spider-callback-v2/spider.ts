@@ -7,7 +7,7 @@ type SaveFileResultCallback = (err: Error | null) => void;
 type DownloadResultCallback = (err: Error | null, content?: string) => void;
 type SpiderLinksResultCallback = (err: Error | null) => void;
 
-export function spider(url: URL, callback: SpiderResultCallback) {
+export function spider(url: URL, nesting: number, callback: SpiderResultCallback) {
   const filename = urlToFilename(url)
 
   fs.access(filename, (err) => {
@@ -17,7 +17,7 @@ export function spider(url: URL, callback: SpiderResultCallback) {
           callback(err, filename, false)
           return
         }
-        spiderLinks(url, content, (err) => {
+        spiderLinks(url, content, nesting, (err) => {
           if (err) {
             callback(err, filename, false)
             return
@@ -40,7 +40,7 @@ export function spider(url: URL, callback: SpiderResultCallback) {
           return
         }
 
-        spiderLinks(url, content, (err) => {
+        spiderLinks(url, content, nesting, (err) => {
           if (err) {
             callback(err, filename, false)
             return
@@ -55,18 +55,34 @@ export function spider(url: URL, callback: SpiderResultCallback) {
   })
 }
 
-function spiderLinks(url: URL, content: string, callback: SpiderLinksResultCallback) {
-  const links = content.match(/<a\s+href="([^"]*)"/g) ?? []
-  const firstLink = links[0]
-
-  if (firstLink === undefined) {
+function spiderLinks(url: URL, content: string, nesting: number, callback: SpiderLinksResultCallback) {
+  if (nesting === 0) {
     process.nextTick(() => callback(null))
     return
   }
 
-  const nextUrl = new URL(firstLink.slice(9, -1), url)
+  const links = content.match(/<a\s+href="([^"]*)"/g) ?? []
 
-  spider(nextUrl, callback)
+  function iterate(index: number) {
+    const link = links[index]
+
+    if (link === undefined) {
+      process.nextTick(() => callback(null))
+      return
+    }
+
+    const nextUrl = new URL(link.slice(9, -1), url)
+
+    spider(nextUrl, nesting - 1, (err) => {
+      if (err) {
+        callback(err)
+        return
+      }
+      iterate(index + 1)
+    })
+  }
+
+  iterate(0)
 }
 
 function urlToFilename(url: URL): string {

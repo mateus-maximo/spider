@@ -106,13 +106,13 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 5. Callback spider, version 2: sequential recursion
 
-- [ ] Copy the refactored version into `callbacks/v2-sequential/`.
-- [ ] Read cached HTML so its links can still be followed.
-- [ ] Implement page-link extraction and the `nesting === 0` base case.
-- [ ] Implement `spiderLinks()` with recursive `iterate(index)` so one child finishes before the next starts.
-- [ ] Manually run depth 0, depth 1, an empty page, a cached parent page, and a failing child link.
-- [ ] Use logs or the browser server output to confirm child requests happen sequentially.
-- [ ] Confirm empty and base paths remain asynchronous.
+- [x] Copy the refactored version into `callbacks/v2-sequential/`.
+- [x] Read cached HTML so its links can still be followed.
+- [x] Implement page-link extraction and the `nesting === 0` base case.
+- [x] Implement `spiderLinks()` with recursive `iterate(index)` so one child finishes before the next starts.
+- [x] Manually run depth 0, depth 1, an empty page, a cached parent page, and a failing child link.
+- [x] Use logs or the browser server output to confirm child requests happen sequentially.
+- [x] Confirm empty and base paths remain asynchronous.
 
 ### 6. Callback spider, version 3: unlimited parallel execution
 
