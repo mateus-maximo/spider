@@ -18,20 +18,20 @@
 ## Deliverables
 
 ```text
-callbacks/
-  v1-nested-callbacks/
-  v1-refactored-callbacks/
-  v2-sequential/
-  v3-unlimited-parallel/
-  v4-limited-parallel/
-promises/
-  v2-sequential/
-  v3-unlimited-parallel/
-  v4-limited-parallel-lazy-tasks/
-async-await/
-  v2-sequential/
-  v3-unlimited-parallel/
-  v4-limited-parallel-producer-consumer/
+chapter-3/
+  callback-exercises/
+chapter-4/
+  spider-callback-v1-single-page/
+  spider-callback-v2-sequential/
+  spider-callback-v3-unlimited-parallel/
+  spider-callback-v4-limited-parallel/
+chapter-5/
+  spider-promise-v2-sequential/
+  spider-promise-v3-unlimited-parallel/
+  spider-promise-v4-limited-parallel-lazy-tasks/
+  spider-async-await-v2-sequential/
+  spider-async-await-v3-unlimited-parallel/
+  spider-async-await-v4-limited-parallel-producer-consumer/
 edition-4-notes/
   callbacks-v3-no-race/
 manual-site/
@@ -97,7 +97,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 4. Callback spider, version 1 refactor: callback discipline
 
-- [x] Copy the completed nested version into `callbacks/v1-refactored-callbacks/`.
+- [x] Refactor `chapter-4/spider-callback-v1-single-page/` without changing behavior.
 - [x] Extract `saveFile()` and `download()` without changing behavior.
 - [x] Give each extracted function one explicit callback type.
 - [x] Replace nested `else` branches with early returns and immediate error propagation.
@@ -106,7 +106,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 5. Callback spider, version 2: sequential recursion
 
-- [x] Copy the refactored version into `callbacks/v2-sequential/`.
+- [x] Copy the refactored version into `chapter-4/spider-callback-v2-sequential/`.
 - [x] Read cached HTML so its links can still be followed.
 - [x] Implement page-link extraction and the `nesting === 0` base case.
 - [x] Implement `spiderLinks()` with recursive `iterate(index)` so one child finishes before the next starts.
@@ -116,7 +116,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 6. Callback spider, version 3: unlimited parallel execution
 
-- [x] Copy callback v2 into `callbacks/v3-unlimited-parallel/`.
+- [x] Copy callback v2 into `chapter-4/spider-callback-v3-unlimited-parallel/`.
 - [x] Replace sequential iteration with parallel dispatch over every link.
 - [x] Track completed tasks and call the final callback only after all links finish.
 - [x] Stop final success after the first error and ensure the final callback is called once.
@@ -125,7 +125,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 7. Callback spider, version 4: limited parallel execution
 
-- [x] Copy callback v3 into `callbacks/v4-limited-parallel/`.
+- [x] Copy callback v3 into `chapter-4/spider-callback-v4-limited-parallel/`.
 - [x] Implement a typed callback `TaskQueue` with `concurrency`, `running`, `queue`, `pushTask()`, and `next()`.
 - [x] Ensure queued tasks start later, never exceed the limit, and continue after completion.
 - [x] Emit `empty` only when both running and queued counts reach zero.
@@ -139,7 +139,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 8. Promise spider, version 2: sequential Promise chain
 
-- [ ] Rewrite callback v2 in `promises/v2-sequential/` instead of wrapping the whole callback implementation in one Promise.
+- [ ] Rewrite callback v2 in `chapter-5/spider-promise-v2-sequential/` instead of wrapping the whole callback implementation in one Promise.
 - [ ] Use Promise-returning filesystem and HTTP operations.
 - [ ] Implement download as a `.then()` chain that passes content to the next step.
 - [ ] Type each Promise fulfillment value.
@@ -150,7 +150,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 9. Promise spider, version 3: unlimited parallel execution
 
-- [ ] Copy Promise v2 into `promises/v3-unlimited-parallel/`.
+- [ ] Copy Promise v2 into `chapter-5/spider-promise-v3-unlimited-parallel/`.
 - [ ] Map links to spider Promises and join them with `Promise.all()`.
 - [ ] Add a `Set` so duplicate URLs are ignored before asynchronous work begins.
 - [ ] Use timestamps to observe overlapping requests.
@@ -159,7 +159,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 10. Promise spider, version 4: limited parallel lazy tasks
 
-- [ ] Copy Promise v3 into `promises/v4-limited-parallel-lazy-tasks/`.
+- [ ] Copy Promise v3 into `chapter-5/spider-promise-v4-limited-parallel-lazy-tasks/`.
 - [ ] Implement generic `runTask<T>(task: () => Promise<T>): Promise<T>`.
 - [ ] Store functions that create Promises, not already-running Promises.
 - [ ] Invoke each task function only when a concurrency slot becomes available.
@@ -173,7 +173,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 11. Async/await spider, version 2: sequential execution
 
-- [ ] Rewrite Promise v2 in `async-await/v2-sequential/` using `async` functions and `await`.
+- [ ] Rewrite Promise v2 in `chapter-5/spider-async-await-v2-sequential/` using `async` functions and `await`.
 - [ ] Use `try/catch` only around the file read so only `ENOENT` triggers a download.
 - [ ] Traverse links with `for...of` plus `await` to preserve sequential behavior.
 - [ ] Inspect inferred Promise return types and add explicit public return types where useful.
@@ -182,7 +182,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 12. Async/await spider, version 3: unlimited parallel execution
 
-- [ ] Copy async/await v2 into `async-await/v3-unlimited-parallel/`.
+- [ ] Copy async/await v2 into `chapter-5/spider-async-await-v3-unlimited-parallel/`.
 - [ ] Start child spiders with `map()` and await them with `Promise.all()`.
 - [ ] Add duplicate suppression before asynchronous work begins.
 - [ ] Use timestamps to observe overlapping requests, completion waiting, and failure propagation.
@@ -190,7 +190,7 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 13. Async/await spider, version 4: limited parallel producer-consumer queue
 
-- [ ] Copy async/await v3 into `async-await/v4-limited-parallel-producer-consumer/`.
+- [ ] Copy async/await v3 into `chapter-5/spider-async-await-v4-limited-parallel-producer-consumer/`.
 - [ ] Implement typed task and sleeping-consumer queues.
 - [ ] Spawn the configured number of async consumers.
 - [ ] Make idle consumers await the next task without polling.
