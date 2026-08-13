@@ -116,24 +116,24 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 6. Callback spider, version 3: unlimited parallel execution
 
-- [ ] Copy callback v2 into `callbacks/v3-unlimited-parallel/`.
-- [ ] Replace sequential iteration with parallel dispatch over every link.
-- [ ] Track completed tasks and call the final callback only after all links finish.
-- [ ] Stop final success after the first error and ensure the final callback is called once.
-- [ ] Use slow local pages and timestamps to observe overlapping requests.
-- [ ] Use converging duplicate links to observe the third-edition race risk. Preserve that behavior in this version.
+- [x] Copy callback v2 into `callbacks/v3-unlimited-parallel/`.
+- [x] Replace sequential iteration with parallel dispatch over every link.
+- [x] Track completed tasks and call the final callback only after all links finish.
+- [x] Stop final success after the first error and ensure the final callback is called once.
+- [x] Use slow local pages and timestamps to observe overlapping requests.
+- [x] Use converging duplicate links to observe the third-edition race risk. Preserve that behavior in this version.
 
 ### 7. Callback spider, version 4: limited parallel execution
 
-- [ ] Copy callback v3 into `callbacks/v4-limited-parallel/`.
-- [ ] Implement a typed callback `TaskQueue` with `concurrency`, `running`, `queue`, `pushTask()`, and `next()`.
-- [ ] Ensure queued tasks start later, never exceed the limit, and continue after completion.
-- [ ] Emit `empty` only when both running and queued counts reach zero.
-- [ ] Split scheduling from `spiderTask()` execution.
-- [ ] Add a `Set` before scheduling to prevent the same URL from being queued twice.
-- [ ] Feed discovered links back into the same queue.
-- [ ] Make the CLI finish from the queue's `empty` event and report queue errors.
-- [ ] Run with concurrency 1, 2, and 4 while observing timestamps and downloaded files.
+- [x] Copy callback v3 into `callbacks/v4-limited-parallel/`.
+- [x] Implement a typed callback `TaskQueue` with `concurrency`, `running`, `queue`, `pushTask()`, and `next()`.
+- [x] Ensure queued tasks start later, never exceed the limit, and continue after completion.
+- [x] Emit `empty` only when both running and queued counts reach zero.
+- [x] Split scheduling from `spiderTask()` execution.
+- [x] Add a `Set` before scheduling to prevent the same URL from being queued twice.
+- [x] Feed discovered links back into the same queue.
+- [x] Make the CLI finish from the queue's `empty` event and report queue errors.
+- [x] Run with concurrency 1, 2, and 4 while observing timestamps and downloaded files.
 
 **Checkpoint:** compare sequential iteration, unlimited parallel fan-out, and limited parallel scheduling without using Promises.
 
