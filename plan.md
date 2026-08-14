@@ -139,23 +139,23 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 8. Promise spider, version 2: sequential Promise chain
 
-- [ ] Rewrite callback v2 in `chapter-5/spider-promise-v2-sequential/` instead of wrapping the whole callback implementation in one Promise.
-- [ ] Use Promise-returning filesystem and HTTP operations.
-- [ ] Implement download as a `.then()` chain that passes content to the next step.
-- [ ] Type each Promise fulfillment value.
-- [ ] Handle only the expected missing-file error locally and rethrow other errors.
-- [ ] Build sequential link traversal by extending a Promise chain one link at a time.
-- [ ] Manually run success, failure, cached-page, and nesting scenarios.
-- [ ] Finish the CLI through one `.then(...).catch(...)` chain.
+- [x] Rewrite callback v2 in `chapter-5/spider-promise-v2-sequential/` instead of wrapping the whole callback implementation in one Promise.
+- [x] Use Promise-returning filesystem and HTTP operations.
+- [x] Implement download as a `.then()` chain that passes content to the next step.
+- [x] Type each Promise fulfillment value.
+- [x] Handle only the expected missing-file error locally and rethrow other errors.
+- [x] Build sequential link traversal by extending a Promise chain one link at a time.
+- [x] Manually run success, failure, cached-page, and nesting scenarios.
+- [x] Finish the CLI through one `.then(...).catch(...)` chain.
 
 ### 9. Promise spider, version 3: unlimited parallel execution
 
-- [ ] Copy Promise v2 into `chapter-5/spider-promise-v3-unlimited-parallel/`.
-- [ ] Map links to spider Promises and join them with `Promise.all()`.
-- [ ] Add a `Set` so duplicate URLs are ignored before asynchronous work begins.
-- [ ] Use timestamps to observe overlapping requests.
-- [ ] Run a failing child URL and observe how the returned Promise rejects.
-- [ ] Record that `Promise.all()` waits for work that has already started. It does not start the mapped requests.
+- [x] Copy Promise v2 into `chapter-5/spider-promise-v3-unlimited-parallel/`.
+- [x] Map links to spider Promises and join them with `Promise.all()`.
+- [x] Add a `Set` so duplicate URLs are ignored before asynchronous work begins.
+- [x] Use timestamps to observe overlapping requests.
+- [x] Run a failing child URL and observe how the returned Promise rejects.
+- [x] Record that `Promise.all()` waits for work that has already started. It does not start the mapped requests.
 
 ### 10. Promise spider, version 4: limited parallel lazy tasks
 
