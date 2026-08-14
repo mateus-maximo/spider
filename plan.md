@@ -159,15 +159,15 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 10. Promise spider, version 4: limited parallel lazy tasks
 
-- [ ] Copy Promise v3 into `chapter-5/spider-promise-v4-limited-parallel-lazy-tasks/`.
-- [ ] Implement generic `runTask<T>(task: () => Promise<T>): Promise<T>`.
-- [ ] Store functions that create Promises, not already-running Promises.
-- [ ] Invoke each task function only when a concurrency slot becomes available.
-- [ ] Forward fulfillment and rejection to the Promise returned by `runTask()`.
-- [ ] Start the next queued task after a running task settles.
-- [ ] Move file-read and download work inside the lazy task function.
-- [ ] Keep recursive link discovery outside the limited I/O task so nested work can enqueue safely.
-- [ ] Run with concurrency 1 and 2, using logs to confirm when each task function actually starts.
+- [x] Copy Promise v3 into `chapter-5/spider-promise-v4-limited-parallel-lazy-tasks/`.
+- [x] Implement generic `runTask<T>(task: () => Promise<T>): Promise<T>`.
+- [x] Store functions that create Promises, not already-running Promises.
+- [x] Invoke each task function only when a concurrency slot becomes available.
+- [x] Forward fulfillment and rejection to the Promise returned by `runTask()`.
+- [x] Start the next queued task after a running task settles.
+- [x] Move file-read and download work inside the lazy task function.
+- [x] Keep recursive link discovery outside the limited I/O task so nested work can enqueue safely.
+- [x] Run with concurrency 1 and 2, using logs to confirm when each task function actually starts.
 
 **Checkpoint:** explain Promise eagerness, why a function returning a Promise is lazy, and why queuing already-created Promises cannot limit their start time.
 
