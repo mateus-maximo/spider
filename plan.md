@@ -182,11 +182,11 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 12. Async/await spider, version 3: unlimited parallel execution
 
-- [ ] Copy async/await v2 into `chapter-5/spider-async-await-v3-unlimited-parallel/`.
-- [ ] Start child spiders with `map()` and await them with `Promise.all()`.
-- [ ] Add duplicate suppression before asynchronous work begins.
-- [ ] Use timestamps to observe overlapping requests, completion waiting, and failure propagation.
-- [ ] Compare this version with Promise v3 and separate syntax changes from control-flow changes.
+- [x] Copy async/await v2 into `chapter-5/spider-async-await-v3-unlimited-parallel/`.
+- [x] Start child spiders with `map()` and await them with `Promise.all()`.
+- [x] Add duplicate suppression before asynchronous work begins.
+- [x] Use timestamps to observe overlapping requests, completion waiting, and failure propagation.
+- [x] Compare this version with Promise v3 and separate syntax changes from control-flow changes.
 
 ### 13. Async/await spider, version 4: limited parallel producer-consumer queue
 
