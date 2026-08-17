@@ -173,12 +173,12 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 11. Async/await spider, version 2: sequential execution
 
-- [ ] Rewrite Promise v2 in `chapter-5/spider-async-await-v2-sequential/` using `async` functions and `await`.
-- [ ] Use `try/catch` only around the file read so only `ENOENT` triggers a download.
-- [ ] Traverse links with `for...of` plus `await` to preserve sequential behavior.
-- [ ] Inspect inferred Promise return types and add explicit public return types where useful.
-- [ ] Run the same manual scenarios used for Promise v2.
-- [ ] Trace where rejections become thrown exceptions.
+- [x] Rewrite Promise v2 in `chapter-5/spider-async-await-v2-sequential/` using `async` functions and `await`.
+- [x] Use `try/catch` only around the file read so only `ENOENT` triggers a download.
+- [x] Traverse links with `for...of` plus `await` to preserve sequential behavior.
+- [x] Inspect inferred Promise return types and add explicit public return types where useful.
+- [x] Run the same manual scenarios used for Promise v2.
+- [x] Trace where rejections become thrown exceptions.
 
 ### 12. Async/await spider, version 3: unlimited parallel execution
 
