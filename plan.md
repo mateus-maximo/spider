@@ -41,14 +41,14 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ## Definition of done
 
-- [ ] All 11 third-edition spider snapshots run independently.
-- [ ] The lazy-task Promise queue does not start work before a concurrency slot is available.
-- [ ] Each family demonstrates sequential, unlimited-parallel, and limited-parallel crawling where the book does.
-- [ ] Manual runs cover recursion depth, caching, error propagation, duplicate links, and concurrency behavior.
-- [ ] The CLI for every final family version reports success and failure correctly.
-- [ ] `npm run typecheck` passes with strict TypeScript checking.
-- [ ] A comparison document records execution order, error flow, concurrency, typing, and readability differences.
-- [ ] The fourth-edition duplicate-race update remains separate from the 2020 versions.
+- [x] All 11 third-edition spider snapshots run independently.
+- [x] The lazy-task Promise queue does not start work before a concurrency slot is available.
+- [x] Each family demonstrates sequential, unlimited-parallel, and limited-parallel crawling where the book does.
+- [x] Manual runs cover recursion depth, caching, error propagation, duplicate links, and concurrency behavior.
+- [x] The CLI for every final family version reports success and failure correctly.
+- [x] `npm run typecheck` passes with strict TypeScript checking.
+- [x] A comparison document records execution order, error flow, concurrency, typing, and readability differences.
+- [x] The fourth-edition duplicate-race update remains separate from the 2020 versions.
 
 ## Sprint backlog
 
@@ -204,28 +204,28 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 14. Fourth-edition update: remove the callback v3 duplicate race
 
-- [ ] Keep the third-edition callback v3 unchanged.
-- [ ] Create `edition-4-notes/callbacks-v3-no-race/` from callback v3.
-- [ ] Move duplicate suppression before file existence, read, and download work.
-- [ ] Ensure duplicate URLs complete asynchronously so callback timing stays consistent.
-- [ ] Run the converging-links scenario and confirm the shared target downloads once.
-- [ ] Record the fourth edition's other modernization choices without mixing them into the 2020 versions.
+- [x] Keep the third-edition callback v3 unchanged.
+- [x] Create `edition-4-notes/callbacks-v3-no-race/` from callback v3.
+- [x] Move duplicate suppression before file existence, read, and download work.
+- [x] Ensure duplicate URLs complete asynchronously so callback timing stays consistent.
+- [x] Run the converging-links scenario and confirm the shared target downloads once.
+- [x] Record the fourth edition's other modernization choices without mixing them into the 2020 versions.
 
 ### 15. Final comparison and manual validation
 
-- [ ] Run each final CLI family version against the local practice website.
-- [ ] Run every saved manual scenario once against its relevant version.
-- [ ] Run `npm run typecheck`, the production build, lint, and `git diff --check`.
-- [ ] Update `README.md` with usage commands.
-- [ ] Create a version matrix with: style, traversal, concurrency, duplicate protection, completion signal, error propagation, and important types.
-- [ ] Capture one execution trace from callback v2/v3/v4, Promise v2/v3/v4, and async/await v2/v3/v4.
-- [ ] Write a short retrospective answering:
-  - [ ] Where does asynchronous work start in each version?
-  - [ ] What represents completion?
-  - [ ] How does an error reach the CLI?
-  - [ ] Which versions can overload a server and why?
-  - [ ] Which version makes accidental sequential execution easiest?
-  - [ ] Where did TypeScript prevent a real mistake?
+- [x] Run each final CLI family version against the local practice website.
+- [x] Run every saved manual scenario once against its relevant version.
+- [x] Run `npm run typecheck`, the production build, lint, and `git diff --check`.
+- [x] Update `README.md` with usage commands.
+- [x] Create a version matrix with: style, traversal, concurrency, duplicate protection, completion signal, error propagation, and important types.
+- [x] Capture one execution trace from callback v2/v3/v4, Promise v2/v3/v4, and async/await v2/v3/v4.
+- [x] Write a short retrospective answering:
+  - [x] Where does asynchronous work start in each version?
+  - [x] What represents completion?
+  - [x] How does an error reach the CLI?
+  - [x] Which versions can overload a server and why?
+  - [x] Which version makes accidental sequential execution easiest?
+  - [x] Where did TypeScript prevent a real mistake?
 
 ## Suggested implementation rhythm
 
