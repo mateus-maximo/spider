@@ -190,15 +190,15 @@ Each runnable version should contain its own `spider.ts`, `spider-cli.ts`, and a
 
 ### 13. Async/await spider, version 4: limited parallel producer-consumer queue
 
-- [ ] Copy async/await v3 into `chapter-5/spider-async-await-v4-limited-parallel-producer-consumer/`.
-- [ ] Implement typed task and sleeping-consumer queues.
-- [ ] Spawn the configured number of async consumers.
-- [ ] Make idle consumers await the next task without polling.
-- [ ] Wrap each task so its fulfillment or rejection settles the Promise returned to the producer.
-- [ ] Run file-read and download work through the queue.
-- [ ] Recursively enqueue discovered links.
-- [ ] Run with different concurrency values and inspect start times, completion, duplicate suppression, and errors.
-- [ ] Explain why the consumers' infinite loops do not perform busy waiting.
+- [x] Copy async/await v3 into `chapter-5/spider-async-await-v4-limited-parallel-producer-consumer/`.
+- [x] Implement typed task and sleeping-consumer queues.
+- [x] Spawn the configured number of async consumers.
+- [x] Make idle consumers await the next task without polling.
+- [x] Wrap each task so its fulfillment or rejection settles the Promise returned to the producer.
+- [x] Run file-read and download work through the queue.
+- [x] Recursively enqueue discovered links.
+- [x] Run with different concurrency values and inspect start times, completion, duplicate suppression, and errors.
+- [x] Explain why the consumers' infinite loops do not perform busy waiting.
 
 **Checkpoint:** compare Promise chaining and async/await while showing that both rely on Promises and the same scheduling rules.
 
